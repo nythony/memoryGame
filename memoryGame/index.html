@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Memory</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet"> 
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+  
+  <!--Levels: Each level has 6x cards-->
+  <!--Difficulty: Either Images/words/color on card-->
+  <!--Single player: Lowest number of turns-->
+  <!--Multiplayer: Most matches-->
+
+  <div id="mainContainer">
+
+    <div id="content">
+      <header>
+        <h1> Memory Game!</h1>
+      </header>
+      
+      <p><span class="bold">Instructions:</span> Turn over any 2 cards. If the cards match, they will get remain turned up. Otherwise, the cards will flip back upside down until its match has been found.</p>
+
+      <div id="setup">
+        
+        <div class="gameElement">
+          <div id="levelElement">
+            <h2>Choose a Level<h2>
+            <select id="level" class="level">
+              <option value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5>5</option>
+              <option value=6>6</option>
+            </select>
+          </div>
+
+          <div id="difficultyElement">
+            <h2>Choose a Difficulty<h2>
+            <select id="difficulty" class="difficulty">
+              <option value=1>Easy: Words</option>
+              <option value=2>Medium: Colors</option>
+              <option value=3>Hard: Images</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="score hidden">
+          <div class="timer">
+            <span id="minutes">00</span>:<span id="seconds">00</span>
+          </div>
+
+          <div class="tries">
+            Number of tries: <span id="counter">
+          </div>
+        </div>
+
+        <button id="play">Play</button>
+
+      </div>
+    </div>
+
+    <div id="game">
+    </div>
+  </div>
+
+  <footer>
+    Copyright &copy; 2020
+  </footer>
+
+  </body>
+</html>
