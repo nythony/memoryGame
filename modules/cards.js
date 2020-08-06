@@ -1,17 +1,25 @@
+//Loading hardcoded words, colors and backup images into the brower for later reference
 loadDoc("/modules/cardContent.json");
 
+//Attributes
 let words = [];
 let colors = [];
 let images = [];
 let backup = [];
 
 
-//Generates an array of "num" number of randomly selected words from the "words" array.
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Generates an array of "num" number of randomly selected words or colors (type)  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 export function chooseContent(num, type){
   words = localStorage.getItem("words").split(",");
   colors = localStorage.getItem("colors").split(",");
   
   let cardContent = [];
+
+  //Randomly selects indices from the specified array, ensuring no duplicates
   let array = eval(type);
   while(cardContent.length < num){
       var index = Math.floor(Math.random() * 18);
@@ -28,12 +36,22 @@ export function chooseContent(num, type){
 }
 
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * 
+ * Generates an array of "num" number of images. *
+ * * * * * * * * * * * * * * * * * * * * * * * * */
+/*
+ This method "await Promise" that will execute in the main code.
+ The rest of the main code will then run on the same thread as the
+ one created in this method, and the "return cardContent" will be 
+ accessible.
+*/
+
 export async function chooseContentImage(num){
-  backup = localStorage.getItem("backup").split(",");
-  images = [];
+
+  images = []; //reset
   let cardContent = [];
 
-  //Select Images
+  //Select Ranom Images from Unsplash
   let promises = [];
   for (let i = 0; i < num/2; i++){
     promises.push(
@@ -44,13 +62,22 @@ export async function chooseContentImage(num){
       )
     )
   }
-  return await Promise.all(promises).then((response) =>{ //Promises runs on a separate thread
-    console.log('response', response);
+  //This whole code block is returned
+  return await Promise.all(promises).then((response) =>{
+
     cardContent = [...images];
 
     //API request exceeded or unsuccessful
+    /*
+     API only allows 50 requests/hour. Quota resets at the top of each hour.
+     Each image is a single request.
+     (Level 1 = 6 cards = 3 image requests; Level 6 = 36 cards = 18 image requests)
+     Must apply for production level to increase quota.
+     */
     if (cardContent.length < num){
-      console.log("ERROR: Using backup iamges");
+      console.log("ERROR: Using backup iamges"); //runs much slower
+      backup = localStorage.getItem("backup").split(",");
+      //Populates however much is needed
       while(cardContent.length < num){
         var index = Math.floor(Math.random() * 18);
         if(cardContent.includes(backup[index]) === false){
@@ -62,24 +89,18 @@ export async function chooseContentImage(num){
     }
 
     cardContent = shuffle(cardContent);
-    console.log("Shuffled", cardContent);
     return cardContent;
   })
 }
 
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
 
-//parsing JSON
+
+/* * * * * * * * * 
+ * Parsing JSON  *
+ * * * * * * * * */
+
 function loadDoc(filename) {
+  //Words and colors: Stores in user's brower
   if (filename.includes("card")){
     $.getJSON( filename, function( data ) {
       $.each( data, function( key, value ) {
@@ -87,7 +108,7 @@ function loadDoc(filename) {
       });
     });
   }
-  //images
+  //Images: Returns the promise
   else{
     return $.getJSON( filename, function( data ) {
       $.each( data, function( key, value ) {
@@ -98,4 +119,21 @@ function loadDoc(filename) {
       });
     });
   }
+}
+
+
+
+/* * * * * * * * * * * * * * * *
+ * Shuffles contents of array  *
+ * * * * * * * * * * * * * * * */
+
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+  }
+  return a;
 }
