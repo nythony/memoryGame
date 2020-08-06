@@ -1,4 +1,4 @@
-import {chooseContent} from './modules/cards.js';
+import {chooseContent, chooseContentImage} from './modules/cards.js';
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
@@ -55,44 +55,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       difficulty = parseInt(document.querySelector("#difficulty").value);
 
-      gameEle.innerHTML = generateCards(level, difficulty);
-
-      /*
-       * STYLE 
-       */
-
-      // 3 Cards per row
-      if (level == 1){
-          setStyle(18, 3);
-      } 
-      else if (level == 2){
-          setStyle(12, 4);
-      } 
-
-      else if (level == 3){
-        setStyle(11, 6);
-      }
-      
-      else if (level == 4){
-        setStyle(9, 6);
-      }
-      else {
-        setStyle(7, 6);
-      }
-
-      document.querySelectorAll(".card").forEach( elem => {
-        elem.addEventListener("click", checkCard, true);
-        /*
-        * Note to self:
-        * Anonymous functions are mutually exclusive,
-        * you cannot remove event by "recreating" the
-        * parameters of addEventListener.
-        */
-      });
+      generateCards(level, difficulty, gameEle);
 
   });
 
-  function generateCards(level, difficulty){
+  async function generateCards(level, difficulty, elem){
     console.log(difficulty);
     //Each level will have 6x cards
     let numCards = level * 6;
@@ -101,7 +68,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
               break;
       case 2: content = chooseContent(numCards, "colors");
               break; 
-      case 3: content = chooseContent(numCards, "images");
+      case 3: content = await chooseContentImage(numCards);
               break;  
       default: content = chooseContent(numCards, "words");
     }
@@ -117,8 +84,43 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
       htmlStr += "</div>";
     } 
-  
-    return htmlStr;
+    
+    console.log(htmlStr);
+    elem.innerHTML = htmlStr;
+
+    /*
+    * STYLE 
+    */
+
+  // 3 Cards per row
+      if (level == 1){
+        setStyle(18, 3);
+    } 
+    else if (level == 2){
+        setStyle(12, 4);
+    } 
+
+    else if (level == 3){
+      setStyle(11, 6);
+    }
+    
+    else if (level == 4){
+      setStyle(9, 6);
+    }
+    else {
+      setStyle(7, 6);
+    }
+
+    document.querySelectorAll(".card").forEach( elem => {
+      elem.addEventListener("click", checkCard, true);
+      /*
+      * Note to self:
+      * Anonymous functions are mutually exclusive,
+      * you cannot remove event by "recreating" the
+      * parameters of addEventListener.
+      */
+    });
+
     
   }
 
