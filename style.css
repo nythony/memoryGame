@@ -6,11 +6,11 @@ body{
   margin: 0;
   font-family: 'Sora', sans-serif;
 
-  background: rgb(220,255,249);
-  background: -moz-linear-gradient(90deg, rgba(220,255,249,1) 16%, rgba(204,239,251,1) 36%);
-  background: -webkit-linear-gradient(90deg, rgba(220,255,249,1) 16%, rgba(204,239,251,1) 36%);
-  background: linear-gradient(90deg, rgba(220,255,249,1) 16%, rgba(204,239,251,1) 36%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#dcfff9",endColorstr="#cceffb",GradientType=1); 
+  background: rgb(206,255,247);
+  background: -moz-linear-gradient(90deg, rgba(206,255,247,1) 17%, rgba(176,236,255,1) 39%);
+  background: -webkit-linear-gradient(90deg, rgba(206,255,247,1) 17%, rgba(176,236,255,1) 39%);
+  background: linear-gradient(90deg, rgba(206,255,247,1) 17%, rgba(176,236,255,1) 39%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cefff7",endColorstr="#b0ecff",GradientType=1); 
 }
 
 #mainContainer{
@@ -31,8 +31,12 @@ body{
 }
 
 h1{
+  font-family: 'Lemonada', cursive;
   font-size: 5vw;
   margin: 0;
+  color: #5bd9d2;
+  text-shadow: 0.2vw 0.2vw 0.2vw #000000;
+  line-height: 125%;
 }
 
 h2{
@@ -119,8 +123,11 @@ button{
 }
 
 #win{
+  font-family: 'Lemonada', cursive;
   margin: auto;
   font-size: 10vw;
+  color: #63ebe4;
+  text-shadow: 0.5vw 0.5vw 1.5vw black;
 }
 
 
