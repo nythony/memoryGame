@@ -63,19 +63,19 @@ export async function chooseContentImage(num){
     )
   }
   //This whole code block is returned
-  return await Promise.all(promises).then((response) =>{
+  return await Promise.allSettled(promises).then((response) =>{
 
     cardContent = [...images];
 
     //API request exceeded or unsuccessful
     /*
      API only allows 50 requests/hour. Quota resets at the top of each hour.
-     Each image is a single request.
+     Each image is a single requesst.
      (Level 1 = 6 cards = 3 image requests; Level 6 = 36 cards = 18 image requests)
      Must apply for production level to increase quota.
      */
     if (cardContent.length < num){
-      console.log("ERROR: Using backup iamges"); //runs much slower
+      console.log("ERROR: Using backup images"); //runs much slower
       backup = localStorage.getItem("backup").split(",");
       //Populates however much is needed
       while(cardContent.length < num){
@@ -117,7 +117,7 @@ function loadDoc(filename) {
           images.push(value.small);
         }
       });
-    });
+    })
   }
 }
 
@@ -137,3 +137,40 @@ function shuffle(a) {
   }
   return a;
 }
+
+
+
+
+// .error(function(err) {
+//         console.log("ERROR: ", err);
+//         let cardContent = [...images];
+//         let num = 6;
+
+//         console.log("CARD CONTENT: ", cardContent);
+
+//         //API request exceeded or unsuccessful
+//         /*
+//         API only allows 50 requests/hour. Quota resets at the top of each hour.
+//         Each image is a single request.
+//         (Level 1 = 6 cards = 3 image requests; Level 6 = 36 cards = 18 image requests)
+//         Must apply for production level to increase quota.
+//         */
+//         if (cardContent.length < num){
+//           console.log("ERROR: Using backup iamges"); //runs much slower
+//           backup = localStorage.getItem("backup").split(",");
+//           //Populates however much is needed
+//           while(cardContent.length < num){
+//             var index = Math.floor(Math.random() * 18);
+//             if(cardContent.includes(backup[index]) === false){
+//               //Add twice for a pair
+//               cardContent.push(backup[index]);
+//               cardContent.push(backup[index]);
+//             }
+//           }
+//         }
+
+//         cardContent = shuffle(cardContent);
+
+//         console.log("done ", cardContent);
+//         return cardContent;
+//       });
