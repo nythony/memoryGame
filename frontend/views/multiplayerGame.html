@@ -4,13 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Test Memory</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="#" /> <!--Gets rid of the favicon error--> 
+    <link href="../style.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Lemonada&family=Sora&display=swap" 
           rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+    <script type="module" src="../js/multiGameElements.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+</head>
+<body>
   
   <!--Levels: Each level has 6x cards-->
   <!--Difficulty: Either words/colors/images on card-->
@@ -21,49 +24,41 @@
       <header>
         <h1> Memory Game!</h1>
       </header>
-      
+
       <p><span class="bold">Instructions:</span> Turn over any 2 cards. 
-        If the cards match, they will get remain turned up. Otherwise, 
-        the cards will flip back upside down until its match has been found.
-        Try to match them all!</p>
+        If the cards match, you get to go again. Otherwise, the cards will 
+        flip back upside down and your turn will end.
+        Try to match more than your opponent can!</p>
 
       <div id="setup">
         
-        <div class="gameElement">
+        <div class="gameElement" style="display: none">
           <div id="levelElement">
-            <h2>Choose a Level<h2>
             <select id="level" class="level">
-              <option value=1>1</option>
-              <option value=2>2</option>
-              <option value=3>3</option>
-              <option value=4>4</option>
-              <option value=5>5</option>
               <option value=6>6</option>
             </select>
           </div>
 
-          <div id="difficultyElement">
+          <div id="difficultyElement" style="display: none">
             <h2>Choose a Difficulty<h2>
             <select id="difficulty" class="difficulty">
-              <option value=1>Easy: Words</option>
               <option value=2>Medium: Images</option>
-              <option value=3>Hard: Colors</option>
             </select>
           </div>
         </div>
 
-        <div class="score hidden">
+        <div class="score show">
           <div class="timer">
             <span id="minutes">00</span>:<span id="seconds">00</span>
           </div>
 
           <div class="tries">
-            Number of tries: <span id="counter">
+            You: <span id="mycounter"></span>/36
+          </div>
+          <div class="tries">
+            Opponent: <span id="oppcounter"></span>/36
           </div>
         </div>
-
-        <button id="play">Play</button>
-        <button id="back">Back</button>
 
       </div>
     </div>
@@ -75,6 +70,5 @@
   <footer>
     Copyright &copy; 2020
   </footer>
-
-  </body>
+</body>
 </html>

@@ -39,6 +39,7 @@ h1{
   line-height: 125%;
 }
 
+
 h2{
   font-size: 2vw;
   margin:0;
@@ -48,12 +49,6 @@ p{
   font-size: 1.5vw;
 }
 
-select{
-  width: 100%;
-  height: 3vw;
-  background-color: #c3eefc;
-  font-size: 1.5vw;
-}
 
 #difficultyElement{
   margin-top: 1vw;
@@ -151,3 +146,55 @@ footer{
 .show{
   display: inline-block;
 }
+
+/* User Pages */
+input, select{
+  width: 100%;
+  height: 3vw;
+  background-color: #c3eefc;
+  font-size: 1.5vw;
+}
+
+.inputs{
+  width: 70%;
+}
+
+.inputs > h2{
+  font-family: 'Lemonada', cursive;
+  font-size: 3vw;
+  margin: 0;
+  color: #5bd9d2;
+  line-height: 125%;
+  text-shadow: 0.1vw 0.1vw 0.1vw #000000;
+  text-align: center;
+}
+
+.sectionContainer{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.section{
+  width: 30%;
+}
+
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.topRightCorner{
+  position:absolute;
+  top:0;
+  right:0;
+ }
+ 
+ .inline{
+   display: inline-block;
+ }

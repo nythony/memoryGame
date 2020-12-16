@@ -1,5 +1,5 @@
 //Loading hardcoded words, colors and backup images into the brower for later reference
-loadDoc("/modules/cardContent.json");
+loadDoc("../modules/cardContent.json");
 
 //Attributes
 let words = [];
@@ -89,6 +89,7 @@ export async function chooseContentImage(num){
     }
 
     cardContent = shuffle(cardContent);
+    console.log(cardContent)
     return cardContent;
   })
 }

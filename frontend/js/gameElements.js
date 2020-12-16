@@ -1,4 +1,12 @@
-import {chooseContent, chooseContentImage} from './modules/cards.js';
+import {chooseContent, chooseContentImage} from '../modules/cards.js';
+import {getCookie} from "./manageCookies.js"
+
+let userID = getCookie("userID")
+
+//Redirect back to login if user is not logged in
+if (userID == ""){
+    window.location = "./login.html"
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
@@ -283,7 +291,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         //All matches found
         if (matches == content.length){
           pause = true;
-          document.querySelector("#game").innerHTML = '<div id="win">YOU WIN!</div>';
+          document.querySelector("#game").innerHTML = 
+            '<div id="win">YOU WIN!</div>  <a href="./userHomePage.html" class="topRightCorner">Return to User Home Page</a>';
         }
       }
 
@@ -301,7 +310,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
               document.querySelector(`#${cardID} > .text`).style.display = "none";
             }
             else{
-              document.querySelector(`#${cardID}`).style.background = 'url("./images/cardBackground.jpg") center/cover no-repeat';
+              document.querySelector(`#${cardID}`).style.background = 'url("../images/cardBackground.jpg") center/cover no-repeat';
             }
           })
           

@@ -1,0 +1,24 @@
+{
+  "words": ["candy", "cotton", "lamp", "lamb", "dog", "table", "cookie", "peanut", "bed", "mouse", "rabbit", "bucket", "carrot", "parrot", "water", "ocean", "whale", "turtle"],
+  "colors": ["#FF3333", "#FF6433", "#FFAE33", "#FFF833", "#CEFF33", "#7BFF33", "#33FFA4", "#33FFEE", "#33DCFF", "#3357FF", "#A633FF", "#E133FF", "#FF33AB", "#FFFFFF", "#E2E2E2", "#9C9C9C", "#6D6D6D", "#000000"],
+  "backup": [
+    "../images/beach.jpg",
+    "../images/cliff.jpg",
+    "../images/creek.jpg",
+    "../images/farm.jpeg",
+    "../images/flowerfield.jpg",
+    "../images/flowers.jpeg",
+    "../images/forest.jpg",
+    "../images/landscape.jpg",
+    "../images/leaves.jpeg",
+    "../images/ocean.png",
+    "../images/plains.jpg",
+    "../images/reflection.jpg",
+    "../images/shore.jpg",
+    "../images/solodock.jpg",
+    "../images/sunset.jpg",
+    "../images/waterfall.jpg",
+    "../images/waterside.jpg",
+    "../images/whitetree.jpg"
+  ]
+}

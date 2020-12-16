@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Login: Test Memory</title>   
+    <link rel="shortcut icon" href="#" /> <!--Gets rid of the favicon error--> 
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada&family=Sora&display=swap" 
+          rel="stylesheet">
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="../js/signUpPage.js"></script>
+  </head>
+  <body>
+    <div class="centerPage">
+      <h1>Memory Game</h1>
+       
+      <div class="inputs centered">
+        <h2>Sign Up!</h2>
+
+        <label for="newUsername">Username:</label><br>
+        <input type="text" id="createUsername" name="username" required >
+        <div id="errorMessage"></div>
+        
+        <br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="createPassword" name="password">
+        
+        <br><br><br>
+
+        <button id="createAccountSubmission" type="submit">Sign Up</button>
+
+        <br><br>
+
+        <a href="./login.html">Already have an account?</a>
+      </div>
+
+    </div>
+    
+  </body>
+</html>
